@@ -6,16 +6,22 @@
 #include <EEPROM.h>
 #include <avr/sleep.h>
 
+#define SCREEN_WIDTH 128 // OLED display width, in pixels
+#define SCREEN_HEIGHT 64 // OLED display height, in pixels
+
+#define OLED_RESET -1 // Reset pin # (or -1 if sharing Arduino reset pin)
+
 #define OLED_DC                 11
 #define OLED_CS                 12
 #define OLED_CLK                8 //10
 #define OLED_MOSI               9 //9
 #define OLED_RESET              10 //13
-Adafruit_SSD1306 display(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
+//Adafruit_SSD1306 display(OLED_MOSI, OLED_CLK, OLED_DC, OLED_RESET, OLED_CS);
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 BH1750 lightMeter;
 
-#define DomeMultiplier          2.17                    // Multiplier when using a white translucid Dome covering the lightmeter
+#define DomeMultiplier          8                    // Multiplier when using a white translucid Dome covering the lightmeter
 #define MeteringButtonPin       2                       // Metering button pin
 #define PlusButtonPin           3                       // Plus button pin
 #define MinusButtonPin          4                       // Minus button pin
@@ -89,7 +95,7 @@ void setup() {
   lightMeter.begin(BH1750::ONE_TIME_HIGH_RES_MODE_2);
   //lightMeter.begin(BH1750::ONE_TIME_LOW_RES_MODE); // for low resolution but 16ms light measurement time.
 
-  display.begin(SSD1306_SWITCHCAPVCC, 0x3D);
+  display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
   display.setTextColor(WHITE);
   display.clearDisplay();
 

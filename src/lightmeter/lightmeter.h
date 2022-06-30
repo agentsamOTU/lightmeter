@@ -410,7 +410,7 @@ void refresh() {
     Tfr = round(1 / T);
   }
 
-  uint8_t linePos[] = {15, 37};
+  uint8_t linePos[] = {17, 37};
   display.clearDisplay();
   display.setTextColor(WHITE);
 
@@ -536,7 +536,7 @@ void showISOMenu() {
 
   display.clearDisplay();
   display.setTextSize(2);
-  display.setCursor(50, 4);
+  display.setCursor(50, 2);
   display.println(F("ISO"));
   display.setTextSize(3);
 
@@ -569,7 +569,7 @@ void showNDMenu() {
 
   display.clearDisplay();
   display.setTextSize(2);
-  display.setCursor(10, 4);
+  display.setCursor(10, 2);
   display.println(F("ND Filter"));
   display.setTextSize(3);
 
@@ -731,4 +731,3 @@ void readButtons() {
   MenuButtonState = digitalRead(MenuButtonPin);
   MeteringModeButtonState = digitalRead(MeteringModeButtonPin);
 }
-
